@@ -1,8 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Link } from 'react-router-dom';
+import BaseLayout from './components/BaseLayout';
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <BaseLayout>
+      <div className="App">
+        Home page
+        <Link to="/hotels">See all stay</Link>
+      </div>
+    </BaseLayout>
+  );
 }
 
 export default App;
