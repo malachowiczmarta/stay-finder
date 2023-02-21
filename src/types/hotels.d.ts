@@ -1,5 +1,30 @@
 interface IImage {
   url: string;
+  alt?: string;
+}
+
+export interface IRoom {
+  id: string;
+  name: string;
+  shortDescription: string;
+  longDescription: string;
+  occupancy: {
+    maxAdults: number;
+    maxChildren: number;
+    maxOverall: number;
+  };
+  disabledAccess: boolean;
+  bedConfiguration: string;
+  images: IImage[];
+  facilities: IRoomFacility[];
+}
+
+export interface Rooms {
+  rooms: IRoom[];
+}
+interface IRoomFacility {
+  code: string;
+  name: string;
 }
 
 export interface IHotel {
@@ -13,7 +38,7 @@ export interface IHotel {
   country: string;
   countryCode: string;
   starRating: string;
-  facilities: [];
+  facilities: IRoomFacility[];
   images: IImage[];
   checkInHours: string;
   checkInMinutes: string;
