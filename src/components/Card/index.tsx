@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { IHotel, IRoom, Rooms } from 'src/types/hotels';
 import StarRating from '../FiveStarRating';
 import RoomsListItem from '../RoomsListItem';
+import Slider from '../Slider';
 
 interface ICardProps {
   hotel: IHotel;
@@ -22,11 +23,9 @@ const Card = ({ hotel }: ICardProps) => {
     <div className="p-4">
       <div className="bg-gray-100 p-6 rounded-lg">
         <div className="flex flex-col lg:flex-row justify-start lg:justify-center items-start gap-6 w-full mb-6">
-          <img
-            className="h-60 basis-1/3 rounded object-cover object-center"
-            src={hotel?.images[0]?.url}
-            alt="content"
-          />
+          <div className="h-60 basis-1/3 rounded object-cover object-center">
+            <Slider images={hotel.images} />
+          </div>
           <div className="w-full">
             <div className="flex justify-between items-center mb-4">
               <h2>{hotel.name}</h2>
