@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import BaseLayout from 'src/components/BaseLayout';
-import Card from 'src/components/Card';
+import FiltersBox from 'src/components/FiltersBox';
+import HotelCard from 'src/pages/HotelsList/components/HotelCard';
 import { IHotel } from 'src/types/hotels';
 
 function HotelList() {
@@ -18,6 +19,7 @@ function HotelList() {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex justify-around w-full mb-4">
+            <FiltersBox />
             {/* <Link href="/offers">
               <button className={query.category ? 'btn-secondary' : 'btn-primary'}>All</button>
             </Link>
@@ -34,7 +36,7 @@ function HotelList() {
           </div>
           <ul className="flex flex-col -m-4">
             {data?.map((hotel: IHotel) => (
-              <Card hotel={hotel} key={hotel.id}></Card>
+              <HotelCard hotel={hotel} key={hotel.id}></HotelCard>
             ))}
           </ul>
         </div>

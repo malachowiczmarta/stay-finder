@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import HotelsList from './pages/HotelsList';
+import HotelsList from './pages/HotelsList/HotelsList';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const router = createBrowserRouter([
