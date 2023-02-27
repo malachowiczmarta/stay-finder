@@ -1,11 +1,14 @@
-import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
-import BaseLayout, { mainLoader } from './components/BaseLayout';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { mainLoader } from './components/BaseLayout';
+import ErrorPage from './pages/ErrorPage';
 import HotelsPage from './pages/HotelsList/HotelsPage';
+import MainPage from './pages/MainPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <BaseLayout />,
+    element: <MainPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: 'hotels',

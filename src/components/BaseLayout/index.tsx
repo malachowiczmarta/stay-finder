@@ -60,13 +60,11 @@ const Footer = () => (
   </footer>
 );
 
-export default function BaseLayout() {
+export default function BaseLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-screen w-screen flex-col">
       <TopNavigation />
-      <main>
-        <Outlet />
-      </main>
+      <main>{children}</main>
       <Footer />
     </div>
   );
