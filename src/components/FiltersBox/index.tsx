@@ -1,27 +1,24 @@
-import { useState, useCallback } from 'react';
+import { useEffect } from 'react';
+import { useCustomSearchParams } from 'src/hooks/useCustomSearchParams';
 import Card from '../Card';
 import Counter from './Counter/Counter';
 import Stars from './Stars';
+import useFilters from './useFilters';
 
 function FiltersBox() {
-  const [countAdults, setCountAdults] = useState(0);
-  const [countChildren, setCountChildren] = useState(0);
+  const {
+    handleDecrementAdults,
+    handleIncrementAdults,
+    handleDecrementChildren,
+    handleIncrementChildren,
+    countAdults,
+    countChildren
+  } = useFilters();
+  const [search, setSearch] = useCustomSearchParams();
 
-  const handleDecrementAdults = useCallback(() => {
-    setCountAdults((countAdults) => (countAdults > 0 ? countAdults - 1 : 0));
-  }, [countAdults]);
-
-  const handleIncrementAdults = useCallback(() => {
-    setCountAdults((countAdults) => countAdults + 1);
-  }, [countAdults]);
-
-  const handleDecrementChildren = useCallback(() => {
-    setCountChildren((countChildren) => (countChildren > 0 ? countChildren - 1 : 0));
-  }, [countChildren]);
-
-  const handleIncrementChildren = useCallback(() => {
-    setCountChildren((countChildren) => countChildren + 1);
-  }, [countChildren]);
+  useEffect(() => {
+    setSearch({ maxAdults: countAdults.toString(), maxChildren: countChildren.toString() });
+  }, [countAdults, countChildren]);
 
   return (
     <Card>

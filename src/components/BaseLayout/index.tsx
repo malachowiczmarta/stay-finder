@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import { getHotelsList } from 'src/services/hotels';
 
-interface BaseLayoutProps {
-  children: React.ReactNode;
+export function mainLoader() {
+  const hotels = getHotelsList();
+  return hotels;
 }
 
 const TopNavigation = () => {
@@ -58,11 +60,13 @@ const Footer = () => (
   </footer>
 );
 
-export default function BaseLayout({ children }: BaseLayoutProps) {
+export default function BaseLayout() {
   return (
     <div className="flex h-screen w-screen flex-col">
       <TopNavigation />
-      {children}
+      <main>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

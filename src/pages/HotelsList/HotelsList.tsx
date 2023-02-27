@@ -1,47 +1,77 @@
-import { useQuery } from 'react-query';
-import BaseLayout from 'src/components/BaseLayout';
+import { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router';
 import FiltersBox from 'src/components/FiltersBox';
+import { useCustomSearchParams } from 'src/hooks/useCustomSearchParams';
 import HotelCard from 'src/pages/HotelsList/components/HotelCard';
-import { IHotel } from 'src/types/hotels';
+import { IHotel, IRoom } from 'src/types/hotels';
 
 function HotelList() {
-  const { isLoading, error, data } = useQuery<IHotel[]>('hotels', () =>
-    fetch('https://obmng.dbm.guestline.net/api/hotels?collection-id=OBMNG').then((res) =>
-      res.json()
-    )
-  );
+  const hotels = useLoaderData() as IHotel[];
+  const [hotelsData, setHotelsData] = useState(hotels);
+  const [search, setSearch] = useCustomSearchParams();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
+  const filter = (data: IHotel[], param: string) => {
+    const hotelsWithAvailableRoom = data.reduce((acc, hotel) => {
+      const isRooms = hotel.rooms.filter((room: IRoom) => {
+        // @ts-ignore
+        return room.occupancy[param as keyof IOccupancy] >= Number(search[param]);
+      });
+      if (isRooms.length > 0) {
+        acc.push({ ...hotel, rooms: isRooms });
+      }
+      return acc;
+    }, [] as IHotel[]);
+    return hotelsWithAvailableRoom;
+  };
+
+  // useEffect(() => {
+  //   console.log('params', search);
+
+  //   if (search.maxAdults) {
+  //     const filteredHotels = filter(hotels, 'maxAdults');
+  //     console.log('filteredHotels adults', filteredHotels);
+
+  //     setHotelsData(filteredHotels);
+  //   }
+
+  //   if (search.maxChildren) {
+  //     const filteredHotels = filter(hotels, 'maxChildren');
+  //     console.log('filteredHotels maxChildren', filteredHotels);
+  //     setHotelsData(filteredHotels);
+  //   }
+  // }, [search.maxAdults, search.maxChildren]);
+
+  useEffect(() => {
+    console.log('params', search);
+
+    let filteredHotels = hotelsData;
+
+    if (search.maxAdults) {
+      filteredHotels = filter(filteredHotels, 'maxAdults');
+      console.log('filteredHotels adults', filteredHotels);
+    }
+
+    if (search.maxChildren) {
+      filteredHotels = filter(filteredHotels, 'maxChildren');
+      console.log('filteredHotels maxChildren');
+    }
+
+    setHotelsData(filteredHotels);
+  }, [search.maxAdults, search.maxChildren]);
 
   return (
-    <BaseLayout>
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex justify-around w-full mb-4">
-            <FiltersBox />
-            {/* <Link href="/offers">
-              <button className={query.category ? 'btn-secondary' : 'btn-primary'}>All</button>
-            </Link>
-            <Link href="?category=sale">
-              <button className={query.category === 'sale' ? 'btn-primary' : 'btn-secondary'}>
-                For sale
-              </button>
-            </Link>
-            <Link href="?category=rent">
-              <button className={query.category === 'rent' ? 'btn-primary' : 'btn-secondary'}>
-                For rent
-              </button>
-            </Link> */}
-          </div>
-          <ul className="flex flex-col -m-4">
-            {data?.map((hotel: IHotel) => (
-              <HotelCard hotel={hotel} key={hotel.id}></HotelCard>
-            ))}
-          </ul>
+    <section className="text-gray-600 body-font">
+      <div className="container px-5 py-24 mx-auto">
+        <div className="flex justify-around w-full mb-4">
+          <FiltersBox />
         </div>
-      </section>
-    </BaseLayout>
+        <ul className="flex flex-col -m-4">
+          {hotelsData?.map((hotel: IHotel) => (
+            <HotelCard hotel={hotel} key={hotel.id}></HotelCard>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 

@@ -13,16 +13,18 @@ type ButtonProps = {
 };
 
 const Button = React.memo(({ handleClick, name }: ButtonProps) => {
-  console.log(`${name} rendered button `);
   return (
-    <button className="text-gray-600 cursor-pointer hover:text-gray-700" onClick={handleClick}>
+    <button
+      className="text-gray-600 cursor-pointer hover:text-gray-700"
+      onClick={handleClick}
+      type="button"
+    >
       {name}
     </button>
   );
 });
 
 function Counter({ label, count, handleIncrement, handleDecrement }: Props) {
-  console.log('render Counter', label);
   return (
     <div className="flex items-center">
       <div className="pr-2">{label}:</div>

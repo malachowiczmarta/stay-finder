@@ -19,6 +19,11 @@ export interface IRoom {
   facilities: IRoomFacility[];
 }
 
+export interface IRoomResponse {
+  rooms: IRoom[];
+  ratePlans: unknown[];
+}
+
 export interface Rooms {
   rooms: IRoom[];
 }
@@ -44,6 +49,7 @@ export interface IHotel {
   checkInMinutes: string;
   checkOutHours: string;
   checkOutMinutes: string;
+  rooms: IRoom[];
   position: {
     latitude: number;
     longitude: number;

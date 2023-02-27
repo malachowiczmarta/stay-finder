@@ -1,6 +1,5 @@
-import { useQuery } from 'react-query';
 import Card from 'src/components/Card';
-import { IHotel, IRoom, Rooms } from 'src/types/hotels';
+import { IHotel, IRoom } from 'src/types/hotels';
 import StarRating from '../../../../components/FiveStarRating';
 import RoomsListItem from '../../../../components/RoomsListItem';
 import Slider from '../../../../components/Slider';
@@ -10,15 +9,6 @@ interface ICardProps {
 }
 
 const HotelCard = ({ hotel }: ICardProps) => {
-  const { isLoading, error, data } = useQuery<Rooms>('rooms', () =>
-    fetch(`https://obmng.dbm.guestline.net/api/roomRates/OBMNG/${hotel.id}`).then((res) =>
-      res.json()
-    )
-  );
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
-
   return (
     <Card>
       <div className="flex flex-col lg:flex-row justify-start lg:justify-center items-start gap-6 w-full mb-6">
@@ -36,7 +26,7 @@ const HotelCard = ({ hotel }: ICardProps) => {
         </div>
       </div>
       <ul className="flex flex-col justify-start items-start gap-2">
-        {data?.rooms?.map((room: IRoom) => (
+        {hotel?.rooms?.map((room: IRoom) => (
           <RoomsListItem key={room.id} room={room} />
         ))}
       </ul>
