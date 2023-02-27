@@ -4,6 +4,7 @@ import FiltersBox from 'src/components/FiltersBox';
 import { useCustomSearchParams } from 'src/hooks/useCustomSearchParams';
 import HotelCard from 'src/pages/HotelsList/components/HotelCard';
 import { IHotel, IRoom } from 'src/types/hotels';
+import EmptyList from './components/EmptyList';
 
 function HotelList() {
   const hotels = useLoaderData() as IHotel[];
@@ -66,9 +67,11 @@ function HotelList() {
           <FiltersBox />
         </div>
         <ul className="flex flex-col -m-4">
-          {hotelsData?.map((hotel: IHotel) => (
-            <HotelCard hotel={hotel} key={hotel.id}></HotelCard>
-          ))}
+          {hotelsData?.length > 0 &&
+            hotelsData?.map((hotel: IHotel) => (
+              <HotelCard hotel={hotel} key={hotel.id}></HotelCard>
+            ))}
+          {hotelsData?.length === 0 && <EmptyList />}
         </ul>
       </div>
     </section>
