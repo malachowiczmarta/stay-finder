@@ -3,6 +3,7 @@ import { IHotel, IRoom } from 'src/types/hotels';
 import StarRating from '../../../../components/FiveStarRating';
 import RoomsListItem from '../../../../components/RoomsListItem';
 import Slider from '../../../../components/Slider';
+import AddressWithCheckInHours from '../AddressWithCheckInHours';
 
 interface ICardProps {
   hotel: IHotel;
@@ -20,8 +21,7 @@ const HotelCard = ({ hotel }: ICardProps) => {
             <h2>{hotel.name}</h2>
             <StarRating rating={hotel.starRating} />
           </div>
-          <p>adres</p>
-          <p>adres</p>
+          <AddressWithCheckInHours data={hotel} />
           <p className="leading-relaxed text-base">{hotel.description}</p>
         </div>
       </div>
