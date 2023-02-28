@@ -13,16 +13,19 @@ const HotelCard = ({ hotel }: ICardProps) => {
   return (
     <Card>
       <div className="flex flex-col lg:flex-row justify-start lg:justify-center items-start gap-6 w-full mb-6">
-        <div className="h-60 basis-1/3 rounded object-cover object-center">
+        <div
+          style={{ height: '300px' }}
+          className="h-60 basis-1/3 rounded object-cover object-center w-full"
+        >
           <Slider images={hotel.images} />
         </div>
         <div className="w-full">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center mb-6">
             <h2>{hotel.name}</h2>
             <StarRating rating={hotel.starRating} />
           </div>
           <AddressWithCheckInHours data={hotel} />
-          <p className="leading-relaxed text-base">{hotel.description}</p>
+          <p className="leading-relaxed text-base mt-2">{hotel.description}</p>
         </div>
       </div>
       <ul className="flex flex-col justify-start items-start gap-2">

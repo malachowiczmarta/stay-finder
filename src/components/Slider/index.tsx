@@ -51,9 +51,10 @@ function Slider({ images }: Props) {
   };
 
   return (
-    <div className="relative h-full">
+    <div style={{ height: '300px' }} className="relative h-full">
       {images?.map((image, index) => (
         <img
+          style={{ height: '300px' }}
           key={image.url}
           src={image.url}
           alt={image.alt || ''}
