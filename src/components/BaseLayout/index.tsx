@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getHotelsList } from 'src/services/hotels';
 import bed from 'src/assets/bed.svg';
 
@@ -9,12 +8,6 @@ export function mainLoader() {
 }
 
 const TopNavigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <nav className="flex items-center  bg-white p-3 flex-wrap">
       <Link to="/" className="p-2 mr-4 inline-flex items-center">

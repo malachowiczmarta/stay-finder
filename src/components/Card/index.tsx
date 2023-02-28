@@ -5,7 +5,7 @@ type Props = {
 const Card = ({ children }: Props) => {
   return (
     <div className="p-4">
-      <div className="bg-gray-100 p-6 rounded-lg">{children}</div>
+      <div className="bg-violet-50 p-6 rounded-lg">{children}</div>
     </div>
   );
 };

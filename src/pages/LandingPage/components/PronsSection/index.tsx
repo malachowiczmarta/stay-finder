@@ -1,6 +1,4 @@
 import adventure from 'src/assets/adventure.svg';
-import traveling from 'src/assets/traveling.svg';
-import holiday from 'src/assets/holiday.svg';
 import family from 'src/assets/family.svg';
 import staing from 'src/assets/staing.svg';
 

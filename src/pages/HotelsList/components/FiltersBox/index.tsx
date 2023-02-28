@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useCustomSearchParams } from 'src/hooks/useCustomSearchParams';
-import Card from '../Card';
+import Card from '../../../../components/Card';
 import Counter from './Counter/Counter';
 import Stars from './Stars';
 import useFilters from './useFilters';

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
-import FiltersBox from 'src/components/FiltersBox';
+import FiltersBox from 'src/pages/HotelsList/components/FiltersBox';
 import { useCustomSearchParams } from 'src/hooks/useCustomSearchParams';
 import HotelCard from 'src/pages/HotelsList/components/HotelCard';
 import { IHotel, IRoom } from 'src/types/hotels';
