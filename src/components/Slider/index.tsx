@@ -66,12 +66,14 @@ function Slider({ images }: Props) {
 
       <div className="absolute inset-y-1/2 w-full flex items-center justify-between">
         <button
+          aria-label="previous"
           onClick={handlePrev}
           className="px-1 py-0.5 bg-gray-400/50 hover:bg-gray-400/75 text-white rounded-md focus:outline-none"
         >
           <ArrowLeft />
         </button>
         <button
+          aria-label="next"
           onClick={handleNext}
           className="px-1 py-0.5 bg-gray-400/50 hover:bg-gray-400/75 text-white rounded-md focus:outline-none"
         >
