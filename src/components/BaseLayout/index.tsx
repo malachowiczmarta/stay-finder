@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { getHotelsList } from 'src/services/hotels';
+import bed from 'src/assets/bed.svg';
 
 export function mainLoader() {
   const hotels = getHotelsList();
@@ -15,31 +16,13 @@ const TopNavigation = () => {
   };
 
   return (
-    <nav className="flex items-center  bg-gradient-to-r from-violet-900 to-violet-600 p-3 flex-wrap">
+    <nav className="flex items-center  bg-white p-3 flex-wrap">
       <Link to="/" className="p-2 mr-4 inline-flex items-center">
-        <span className="text-xl text-white font-bold uppercase tracking-wide">StayFinder</span>
+        <img className="h-5 mr-1" src={bed} alt="logo stayfinder" />
+        <span className="text-xl text-violet-600 uppercase tracking-wide">
+          Stay<b>Finder</b>
+        </span>
       </Link>
-      <button
-        onClick={toggleMenu}
-        className="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
-      >
-        Menu
-      </button>
-      <div
-        className={`top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto ${
-          !isOpen ? 'hidden' : ''
-        }`}
-        id="navigation"
-      >
-        <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
-          <Link
-            to="/hotels"
-            className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-100 items-center justify-center hover:bg-gray-900 hover:text-white"
-          >
-            <span>All hotels</span>
-          </Link>
-        </div>
-      </div>
     </nav>
   );
 };
