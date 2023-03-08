@@ -12,7 +12,7 @@ const TopNavigation = () => {
     <nav className="flex items-center  bg-white p-3 flex-wrap">
       <Link to="/" className="p-2 mr-4 inline-flex items-center">
         <img className="h-5 mr-1" src={bed} alt="logo stayfinder" />
-        <span className="text-xl text-violet-600 uppercase tracking-wide">
+        <span className="text-xl text-gray-800 uppercase tracking-wide">
           Stay<b>Finder</b>
         </span>
       </Link>
