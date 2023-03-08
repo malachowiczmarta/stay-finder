@@ -13,20 +13,12 @@ function FiltersBox() {
     handleIncrementChildren,
     countAdults,
     countChildren,
-    setAdults,
-    setCountChildren
+    handleStarsChange,
+    countStars,
+    applyFilters,
+    resetFilters
   } = useFilters();
-  const [search, setSearch] = useCustomSearchParams();
-
-  const applyFilters = () => {
-    setSearch({ maxAdults: countAdults.toString(), maxChildren: countChildren.toString() });
-  };
-
-  const resetFilters = () => {
-    setSearch({ maxAdults: '0', maxChildren: '0' });
-    setAdults(0);
-    setCountChildren(0);
-  };
+  const [search] = useCustomSearchParams();
 
   useEffect(() => {
     applyFilters();
@@ -35,7 +27,7 @@ function FiltersBox() {
   return (
     <Card>
       <div className="flex flex-col md:flex-row justify-center md:justify-center items-center gap-6 w-full">
-        <Stars onChange={() => {}} />
+        <Stars onChange={handleStarsChange} stars={countStars} />
         <Counter
           label="Adults"
           count={countAdults}
@@ -56,7 +48,9 @@ function FiltersBox() {
             apply
           </button>
           <button
-            disabled={search.maxAdults === '0' && search.maxChildren === '0'}
+            disabled={
+              search.maxAdults === '0' && search.maxChildren === '0' && search.stars === '0'
+            }
             onClick={resetFilters}
             className="bg-violet-800 hover:bg-violet-900 disabled:bg-violet-200 disabled:cursor-not-allowed text-white py-1 px-2 rounded-lg"
           >

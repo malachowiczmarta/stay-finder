@@ -25,6 +25,13 @@ function HotelList() {
     return hotelsWithAvailableRoom;
   };
 
+  const filterByStar = (data: IHotel[], param: string) => {
+    const matchingHotels = data.filter(
+      (hotel: IHotel) => Number(hotel.starRating) === Number(search[param])
+    );
+    return matchingHotels;
+  };
+
   useEffect(() => {
     let filteredHotels = hotelsData;
 
@@ -35,13 +42,16 @@ function HotelList() {
     if (search.maxChildren && search.maxChildren !== '0') {
       filteredHotels = filter(filteredHotels, 'maxChildren');
     }
+    if (search.stars && search.stars !== '0') {
+      filteredHotels = filterByStar(filteredHotels, 'stars');
+    }
 
-    if (search.maxChildren === '0' && search.maxAdults === '0') {
+    if (search.maxChildren === '0' && search.maxAdults === '0' && search.stars === '0') {
       filteredHotels = hotels;
     }
 
     setHotelsData(filteredHotels);
-  }, [search.maxAdults, search.maxChildren]);
+  }, [search.maxAdults, search.maxChildren, search.stars]);
 
   return (
     <section className="text-gray-600 body-font">

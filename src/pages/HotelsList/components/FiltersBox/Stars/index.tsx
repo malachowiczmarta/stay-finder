@@ -1,21 +1,17 @@
-import { useState } from 'react';
 import Star from 'src/components/Star';
 
 type StarRatingFilterProps = {
   onChange: (rating: number) => void;
+  stars: number;
 };
 
-function StarRatingFilter({ onChange }: StarRatingFilterProps) {
-  const [rating, setRating] = useState(0);
-
+function StarRatingFilter({ onChange, stars }: StarRatingFilterProps) {
   const handleClick = (value: number) => {
-    console.log('value', value, rating);
-    if (value === rating) {
+    console.log('value', value);
+    if (value === stars) {
       // if the same star is clicked twice, reset the rating to 0
-      setRating(0);
       onChange(0);
     } else {
-      setRating(value);
       onChange(value);
     }
   };
@@ -23,7 +19,7 @@ function StarRatingFilter({ onChange }: StarRatingFilterProps) {
   return (
     <div className="flex">
       {[1, 2, 3, 4, 5].map((value) => (
-        <Star key={value} isFilled={value <= rating} onClick={() => handleClick(value)} />
+        <Star key={value} isFilled={value <= stars} onClick={() => handleClick(value)} />
       ))}
     </div>
   );

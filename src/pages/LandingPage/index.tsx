@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import traveling from 'src/assets/traveling.svg';
-import holiday from 'src/assets/holiday.svg';
 import PronsSection from './components/PronsSection';
 
 const LandingPage = () => {
