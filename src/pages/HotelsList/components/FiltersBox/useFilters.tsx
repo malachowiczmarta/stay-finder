@@ -3,7 +3,6 @@ import { useCallback, useState } from 'react';
 function useFilter() {
   const [adults, setAdults] = useState(0);
   const [countChildren, setCountChildren] = useState(0);
-  // const [search, setSearch] = useCustomSearchParams();
 
   const handleDecrementAdults = useCallback(() => {
     setAdults((countAdults) => (countAdults > 0 ? countAdults - 1 : 0));
@@ -27,7 +26,9 @@ function useFilter() {
     handleDecrementChildren,
     handleIncrementChildren,
     countAdults: adults,
-    countChildren
+    countChildren,
+    setAdults,
+    setCountChildren
   };
 }
 

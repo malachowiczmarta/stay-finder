@@ -12,17 +12,29 @@ function FiltersBox() {
     handleDecrementChildren,
     handleIncrementChildren,
     countAdults,
-    countChildren
+    countChildren,
+    setAdults,
+    setCountChildren
   } = useFilters();
   const [search, setSearch] = useCustomSearchParams();
 
-  useEffect(() => {
+  const applyFilters = () => {
     setSearch({ maxAdults: countAdults.toString(), maxChildren: countChildren.toString() });
-  }, [countAdults, countChildren]);
+  };
+
+  const resetFilters = () => {
+    setSearch({ maxAdults: '0', maxChildren: '0' });
+    setAdults(0);
+    setCountChildren(0);
+  };
+
+  useEffect(() => {
+    applyFilters();
+  }, []);
 
   return (
     <Card>
-      <div className="flex flex-col md:flex-row justify-start md:justify-center items-start gap-6 w-full">
+      <div className="flex flex-col md:flex-row justify-center md:justify-center items-center gap-6 w-full">
         <Stars onChange={() => {}} />
         <Counter
           label="Adults"
@@ -36,6 +48,21 @@ function FiltersBox() {
           handleIncrement={handleIncrementChildren}
           handleDecrement={handleDecrementChildren}
         />
+        <div className="flex items-center gap-2">
+          <button
+            onClick={applyFilters}
+            className="bg-violet-600 hover:bg-violet-700 text-white py-1 px-2 rounded-lg"
+          >
+            apply
+          </button>
+          <button
+            disabled={search.maxAdults === '0' && search.maxChildren === '0'}
+            onClick={resetFilters}
+            className="bg-violet-800 hover:bg-violet-900 disabled:bg-violet-200 disabled:cursor-not-allowed text-white py-1 px-2 rounded-lg"
+          >
+            reset
+          </button>
+        </div>
       </div>
     </Card>
   );

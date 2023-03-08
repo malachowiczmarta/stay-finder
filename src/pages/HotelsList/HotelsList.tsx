@@ -25,36 +25,19 @@ function HotelList() {
     return hotelsWithAvailableRoom;
   };
 
-  // useEffect(() => {
-  //   console.log('params', search);
-
-  //   if (search.maxAdults) {
-  //     const filteredHotels = filter(hotels, 'maxAdults');
-  //     console.log('filteredHotels adults', filteredHotels);
-
-  //     setHotelsData(filteredHotels);
-  //   }
-
-  //   if (search.maxChildren) {
-  //     const filteredHotels = filter(hotels, 'maxChildren');
-  //     console.log('filteredHotels maxChildren', filteredHotels);
-  //     setHotelsData(filteredHotels);
-  //   }
-  // }, [search.maxAdults, search.maxChildren]);
-
   useEffect(() => {
-    console.log('params', search);
-
     let filteredHotels = hotelsData;
 
-    if (search.maxAdults) {
+    if (search.maxAdults && search.maxAdults !== '0') {
       filteredHotels = filter(filteredHotels, 'maxAdults');
-      console.log('filteredHotels adults', filteredHotels);
     }
 
-    if (search.maxChildren) {
+    if (search.maxChildren && search.maxChildren !== '0') {
       filteredHotels = filter(filteredHotels, 'maxChildren');
-      console.log('filteredHotels maxChildren');
+    }
+
+    if (search.maxChildren === '0' && search.maxAdults === '0') {
+      filteredHotels = hotels;
     }
 
     setHotelsData(filteredHotels);

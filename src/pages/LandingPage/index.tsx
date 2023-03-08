@@ -28,8 +28,6 @@ const LandingPage = () => {
             <img src={traveling} alt="traveling illustration" className="rounded-lg" />
           </div>
         </div>
-        {/* <div className="flex flex-col md:flex-row items-center gap-4 py-6 lg:py-8">
-        </div> */}
         <PronsSection />
       </div>
     </div>
