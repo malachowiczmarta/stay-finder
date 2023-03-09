@@ -3,16 +3,18 @@ interface IImage {
   alt?: string;
 }
 
+export interface IOccupancy {
+  maxAdults: number;
+  maxChildren: number;
+  maxOverall: number;
+}
+
 export interface IRoom {
   id: string;
   name: string;
   shortDescription: string;
   longDescription: string;
-  occupancy: {
-    maxAdults: number;
-    maxChildren: number;
-    maxOverall: number;
-  };
+  occupancy: IOccupancy;
   disabledAccess: boolean;
   bedConfiguration: string;
   images: IImage[];
@@ -56,3 +58,5 @@ export interface IHotel {
     timezone: string;
   };
 }
+
+export type HotelFilter = 'maxAdults' | 'maxChildren' | 'stars';

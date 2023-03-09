@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { mainLoader } from './components/BaseLayout';
 import ErrorPage from './pages/ErrorPage';
-import HotelsPage from './pages/HotelsList/HotelsPage';
+import HotelsPage from './pages/HotelsPage/HotelsPage';
 import LandingPage from './pages/LandingPage';
 import MainPage from './pages/MainPage';
 
@@ -14,7 +14,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <LandingPage />,
-        // loader: dashboardLoader,
         errorElement: <ErrorPage />
       },
       {
