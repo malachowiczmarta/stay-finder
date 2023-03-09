@@ -8,7 +8,7 @@ const Adventure = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="adventure 1" clip-path="url(#clip0_1_2)">
+      <g id="adventure 1" clipPath="url(#clip0_1_2)">
         <path
           id="Vector"
           d="M150.925 561.321L164.207 564.918L184.406 515.395L164.801 510.085L150.925 561.321Z"

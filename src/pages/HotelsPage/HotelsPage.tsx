@@ -3,47 +3,27 @@ import { useLoaderData } from 'react-router';
 import FiltersBox from 'src/pages/HotelsPage/components/FiltersBox';
 import { useCustomSearchParams } from 'src/hooks/useCustomSearchParams';
 import HotelCard from 'src/pages/HotelsPage/components/HotelCard';
-import { HotelFilter, IHotel, IOccupancy, IRoom } from 'src/types/hotels';
+import { HotelFilter, IHotel } from 'src/types/hotels';
 import EmptyList from './components/EmptyList';
+import { filter } from './helpers';
 
 function HotelPage() {
   const hotels = useLoaderData() as IHotel[];
   const [hotelsData, setHotelsData] = useState(hotels);
   const [search] = useCustomSearchParams();
 
-  const filter = (data: IHotel[], param: HotelFilter) => {
-    if (param === 'stars') {
-      const matchingHotels = data.filter(
-        (hotel: IHotel) => Number(hotel.starRating) === Number(search[param])
-      );
-      return matchingHotels;
-    } else {
-      const hotelsWithAvailableRoom = data.reduce((acc, hotel) => {
-        const isRooms = hotel.rooms.filter((room: IRoom) => {
-          return room.occupancy[param as keyof IOccupancy] >= Number(search[param]);
-        });
-        if (isRooms.length > 0) {
-          acc.push({ ...hotel, rooms: isRooms });
-        }
-        return acc;
-      }, [] as IHotel[]);
-      return hotelsWithAvailableRoom;
-    }
-  };
-
   useEffect(() => {
     let filteredHotels = hotelsData;
 
     for (const [key, value] of Object.entries(search)) {
       if (value !== '0') {
-        filteredHotels = filter(filteredHotels, key as HotelFilter);
+        filteredHotels = filter(filteredHotels, key as HotelFilter, search);
       }
     }
 
     if (search.maxChildren === '0' && search.maxAdults === '0' && search.stars === '0') {
       filteredHotels = hotels;
     }
-
     setHotelsData(filteredHotels);
   }, [search.maxAdults, search.maxChildren, search.stars]);
 

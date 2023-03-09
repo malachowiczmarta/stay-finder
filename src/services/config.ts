@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const apiConfig = {
-  //   baseURL: config.API_URL,
   baseURL: 'https://obmng.dbm.guestline.net/api/',
 
   headers: {
