@@ -5,7 +5,7 @@ function useFilter() {
   const [adults, setAdults] = useState(0);
   const [countChildren, setCountChildren] = useState(0);
   const [countStars, setCountStars] = useState(0);
-  const [search, setSearch] = useCustomSearchParams();
+  const [, setSearch] = useCustomSearchParams();
 
   const handleDecrementAdults = useCallback(() => {
     setAdults((countAdults) => (countAdults > 0 ? countAdults - 1 : 0));

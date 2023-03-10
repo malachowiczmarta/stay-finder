@@ -26,6 +26,7 @@
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "react/require-default-props": "off",
     "import/prefer-default-export": "off",
+    "no-unused-vars": "off",
     "react/no-unescaped-entities": 0,
     "import/extensions": [
       "off",
@@ -61,7 +62,8 @@
       "rules": {
         "react/react-in-jsx-scope": "off",
         "no-shadow": "off",
-        "@typescript-eslint/no-shadow": ["error"]
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-unused-vars": ["warn"]
       }
     }
   ]
