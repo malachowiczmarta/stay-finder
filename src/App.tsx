@@ -1,14 +1,21 @@
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { mainLoader } from './components/BaseLayout';
+import Spinner from './components/Spinner';
 import ErrorPage from './pages/ErrorPage';
-import HotelsPage from './pages/HotelsPage/HotelsPage';
 import LandingPage from './pages/LandingPage';
-import MainPage from './pages/MainPage';
+
+const MainPage = lazy(() => import('./pages/MainPage'));
+const HotelsPage = lazy(() => import('./pages/HotelsPage/HotelsPage'));
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainPage />,
+    element: (
+      <Suspense fallback={<Spinner />}>
+        <MainPage />
+      </Suspense>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
@@ -18,9 +25,17 @@ const router = createBrowserRouter([
       },
       {
         path: 'hotels',
-        element: <HotelsPage />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <HotelsPage />
+          </Suspense>
+        ),
         errorElement: <ErrorPage />,
         loader: mainLoader
+      },
+      {
+        path: '*',
+        element: <ErrorPage />
       }
     ]
   }
