@@ -12,7 +12,7 @@ type ButtonProps = {
   handleClick: () => void;
 };
 
-const Button = React.memo(function Button({ handleClick, label }: ButtonProps) {
+function Button({ handleClick, label }: ButtonProps) {
   return (
     <button
       className="text-gray-600 cursor-pointer hover:text-gray-700"
@@ -22,17 +22,26 @@ const Button = React.memo(function Button({ handleClick, label }: ButtonProps) {
       {label}
     </button>
   );
+}
+
+const Count = React.memo(function Count({ text }: { text: number }) {
+  return <p className="px-2">{text}</p>;
 });
 
-function Counter({ label, count, handleIncrement, handleDecrement }: Props) {
+const Counter = React.memo(function Counter({
+  label,
+  count,
+  handleIncrement,
+  handleDecrement
+}: Props) {
   return (
     <div className="flex items-center">
       <div className="pr-2">{label}:</div>
       <Button label="-" handleClick={() => handleDecrement()} />
-      <div className="px-2">{count}</div>
+      <Count text={count} />
       <Button label="+" handleClick={() => handleIncrement()} />
     </div>
   );
-}
+});
 
 export default Counter;

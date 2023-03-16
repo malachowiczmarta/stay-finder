@@ -1,3 +1,4 @@
+import React from 'react';
 import Star from 'src/components/Star';
 
 type StarRatingFilterProps = {
@@ -5,7 +6,10 @@ type StarRatingFilterProps = {
   stars: number;
 };
 
-function StarRatingFilter({ onChange, stars }: StarRatingFilterProps) {
+const StarRatingFilter = React.memo(function StarRatingFilter({
+  onChange,
+  stars
+}: StarRatingFilterProps) {
   const handleClick = (value: number) => {
     console.log('value', value);
     if (value === stars) {
@@ -23,6 +27,6 @@ function StarRatingFilter({ onChange, stars }: StarRatingFilterProps) {
       ))}
     </div>
   );
-}
+});
 
 export default StarRatingFilter;
